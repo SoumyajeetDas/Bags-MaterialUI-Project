@@ -7,7 +7,6 @@ import './Navbar.css';
 
 const Navbar = () => {
     return (
-        <div>
             <AppBar position='static' sx={{
                 backgroundColor: "warning.light"
             }}>
@@ -26,13 +25,13 @@ const Navbar = () => {
                             ml: "auto"
                         }}>
                             <Button id="button-style" color="inherit" sx={{
-                                fontSize: "19px",
+                                fontSize: "15px",
                                 '&:hover': {
                                     backgroundColor: "warning.main"
                                 }
                             }}>Home</Button>
                             <Button id="button-style" color="inherit" sx={{
-                                fontSize: "19px",
+                                fontSize: "15px",
                                 '&:hover': {
                                     backgroundColor: "warning.main"
                                 }
@@ -42,7 +41,6 @@ const Navbar = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-        </div>
     )
 }
 
