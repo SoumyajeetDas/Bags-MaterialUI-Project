@@ -42,6 +42,7 @@ https://bengali-food-webapp.netlify.app/
 ## Features
 
 - React JS Application with Best Practises.
+- Used Coin Gecko API to get data about the Cryptocurrency.
 - Some brief knowledge about cryptocurrency in Home Page.
 - Carousel consisting of top 10 trending coins with their market cap and 24h change in percentage data.
 - Top 100 coins with price, 24h change in percentage, market cap data in tabular format.
