@@ -93,7 +93,7 @@ const Carousel = () => {
 
                     </Box>
                     <Box>
-                        <Typography sx={{ fontFamily: "'Unbounded', cursive", color:"warning.dark" }}>
+                        <Typography sx={{ fontFamily: "'Unbounded', cursive" }}>
                             ₹{numberWithCommas((coin.current_price).toFixed(2))}
                             </Typography>
                     </Box>
