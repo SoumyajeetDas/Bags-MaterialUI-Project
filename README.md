@@ -47,6 +47,7 @@ https://bengali-food-webapp.netlify.app/
 - Carousel consisting of top 10 trending coins with their market cap and 24h change in percentage data.
 - Top 100 coins with price, 24h change in percentage, market cap data in tabular format.
 - On clicking each coin in the Carousel and in the table, knowledge about the specefic coin along with it's price for 1year trend  will be visible.
+- Fully Responsive Application
 - Deployed to Netlify using CI/CD pipeline configuration.
 
 
