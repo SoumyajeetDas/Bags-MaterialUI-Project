@@ -21,7 +21,7 @@ A Web App named as Crypto created with React and Material UI
 
 ## Website
 
-https://bengali-food-webapp.netlify.app/
+https://cryptocurrency-webapp.netlify.app/
 
 
 ## Screenshots
