@@ -35,7 +35,7 @@ const Footer = () => {
                 </Stack>
 
                 <Typography variant="body1" component="div" mt={7}>
-                    <i>crypto.netlify.app © 2022</i>
+                    <i>cryptocurrency-webapp.netlify.app © 2022</i>
                 </Typography>
 
             </Container>
