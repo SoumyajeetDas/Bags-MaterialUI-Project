@@ -54,8 +54,7 @@ const Graph = () => {
 
                         let date = new Date(data[0]);
 
-                        // getHours will get the Hours part in the date provided and getMinutes will get the minute part
-                        // provided in the date provided
+                       // Concatenating the month with year
 
                         return date.toLocaleString('default', { month: 'long' }) + " " + date.getFullYear();
 
