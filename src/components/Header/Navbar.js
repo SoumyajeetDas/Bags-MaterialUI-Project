@@ -1,15 +1,23 @@
-import React from 'react';
-import {
-    AppBar, Container, IconButton, Toolbar, Typography, Stack, Button
-} from '@mui/material';
+import React, { useState } from 'react';
+import { AppBar, Container, IconButton, Toolbar, Typography, Stack, Button, useTheme, useMediaQuery } from '@mui/material';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import { useNavigate, useResolvedPath, useMatch } from 'react-router-dom'
 import './Navbar.css';
+import MenuIcon from '@mui/icons-material/Menu';
+import MobileNavbar from './MobileNavbar';
 
 const Navbar = () => {
 
 
     const navigate = useNavigate();
+
+    const [open, setOpen] = useState(false);
+
+    // This will take out the current theme that is been used in the project.
+    const theme = useTheme();
+
+    // useMediaWuery will basically check for the breakponts or wwe can seay if it is lower than md
+    const isMatch = useMediaQuery(theme.breakpoints.down("md"))
 
 
     const CustomLink = (props) => {
@@ -25,12 +33,6 @@ const Navbar = () => {
 
         return (
             <>
-                {/* <div className={isActive ? "menuitems-active" : "menuitems"} onClick={() => changes(`${props.to}`)}>
-                    <span className="material-symbols-outlined">
-                        {props.symbols}
-                    </span>
-                    {props.value}
-                </div> */}
 
                 <Button id="button-style" color="inherit"
                     onClick={() => navigate(`${props.to}`)}
@@ -40,7 +42,9 @@ const Navbar = () => {
                         '&:hover': {
                             backgroundColor: "warning.main"
                         }
-                    }}>{props.value}</Button>
+                    }}>
+                    {props.value}
+                </Button>
             </>
 
         )
@@ -66,13 +70,30 @@ const Navbar = () => {
                         ml: "auto"
                     }}>
 
-                        <CustomLink value="Home" to="/" />
+                        {/* With useMediqQuery isMatch checks whether or not it below md or above md */}
 
-                        <CustomLink value="Dashboard" to="/dashboard" />
+                        {!isMatch ?
+
+                            <>
+                                <CustomLink value="Home" to="/" />
+
+                                <CustomLink value="Dashboard" to="/dashboard" />
+                            </>
+
+                            :
+
+                            <IconButton color='inherit' onClick={() => setOpen(true)}>
+                                <MenuIcon />
+                            </IconButton>
+                        }
+
 
                     </Stack>
                 </Toolbar>
             </Container>
+
+            <MobileNavbar open={open} setOpen={setOpen} />
+
         </AppBar>
     )
 }

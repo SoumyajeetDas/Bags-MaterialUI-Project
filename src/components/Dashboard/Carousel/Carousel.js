@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container, Paper, Stack, Typography, CircularProgress } from '@mui/material';
+import { Box, Container, Paper, Typography, CircularProgress } from '@mui/material';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import './Carousel.css';
+import { Link } from 'react-router-dom'
 
 const Carousel = () => {
 
@@ -11,11 +11,12 @@ const Carousel = () => {
     const [loading, setLoading] = useState(false);
 
 
-    // To provide comma in functions
+    // To provide comma to the price value
     function numberWithCommas(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
+    // For the responsiveness of the Carausel
     const responsive = {
         0: {
             items: 2
@@ -49,6 +50,8 @@ const Carousel = () => {
 
 
     useEffect(() => {
+
+        // Fetched the Carousel Data on component mounting
         fetchCarouselData();
     }, [])
 
@@ -56,30 +59,47 @@ const Carousel = () => {
 
     const items = coinCarouselData.map(coin => {
         return (
-            <Box>
-                <img src={coin.image} alt={coin.name} height="80" />
 
-                <Box sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center"
-                }}>
-                    <Typography sx={{ fontFamily: "'Poppins', sans-serif", marginRight: "10px" }}>{coin.symbol}</Typography>
+            <Link key={coin.id} to={`/singleCoin/${coin.id}`} style={{ textDecoration: "none", color: "black" }}>
 
-                    <Typography sx={{
-                        color: `${coin.price_change_percentage_24h < 0 ? 'error.main' : 'success.main'}`
-                    }}>
-
-                        <b>{(coin.price_change_percentage_24h) < 0 ? (coin.price_change_percentage_24h).toFixed(2) + '%'
-                            : '+' + (coin.price_change_percentage_24h).toFixed(2) + '%'
-                        }</b>
-                    </Typography>
-
-                </Box>
                 <Box>
-                    <Typography sx={{ fontFamily: "'Unbounded', cursive" }}>₹{numberWithCommas((coin.current_price).toFixed(2))}</Typography>
+                    <img src={coin.image} alt={coin.name} height="80" />
+
+                    <Box sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }}>
+                        <Typography sx={{
+                            fontFamily: "'Poppins', sans-serif",
+                            marginRight: "10px"
+                        }}>
+                            {coin.symbol}
+
+                        </Typography>
+
+                        <Typography sx={{
+
+
+                            // If the price goes less than 0 then the colour will be 0 otherwise it will be green
+                            color: `${coin.price_change_percentage_24h < 0 ? 'error.main' : 'success.main'}`
+                        }}>
+                            
+                            {/* Adding +  if the price percenrtage is above 0 bcoz if it is less than 0 api is already providing - sign.  */}
+                            <b>{(coin.price_change_percentage_24h) < 0 ? (coin.price_change_percentage_24h).toFixed(2) + '%'
+                                : '+' + (coin.price_change_percentage_24h).toFixed(2) + '%'
+                            }</b>
+                        </Typography>
+
+                    </Box>
+                    <Box>
+                        <Typography sx={{ fontFamily: "'Unbounded', cursive", color:"warning.dark" }}>
+                            ₹{numberWithCommas((coin.current_price).toFixed(2))}
+                            </Typography>
+                    </Box>
                 </Box>
-            </Box>
+            </Link>
+
 
         )
     })
@@ -105,7 +125,7 @@ const Carousel = () => {
 
                 {loading && <CircularProgress color="warning" />}
 
-
+                {/* Third Party Carasouel module */}
                 <AliceCarousel
                     mouseTracking
                     infinite

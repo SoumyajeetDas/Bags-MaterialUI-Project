@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+
+
 .App {
   text-align: center;
 }
@@ -36,3 +45,9 @@
     transform: rotate(360deg);
   }
 }
+
+*{
+  scroll-behavior: smooth;
+}
+
+
