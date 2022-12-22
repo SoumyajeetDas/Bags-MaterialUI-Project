@@ -79,7 +79,8 @@ const Content = () => {
                                     lg: "37px",
                                     md: "31px",
                                     xs: "25px"
-                                }
+                                },
+                                fontFamily: "'Libre Baskerville', serif"
                             }}>
                                 How does cryptocurrency work?
                             </Typography>
@@ -90,7 +91,8 @@ const Content = () => {
                                     fontSize: {
                                         lg: "15px",
                                         xs: "12px"
-                                    }
+                                    },
+                                    fontFamily: "'Libre Baskerville', serif"
                                 }}
                             >
                                 Cryptocurrencies run on a distributed public ledger called blockchain, a record of all transactions updated and held by currency holders.
@@ -119,13 +121,14 @@ const Content = () => {
                                 lg: "37px",
                                 md: "31px",
                                 xs: "25px"
-                            }
+                            },
+                            fontFamily: "'Libre Baskerville', serif"
                         }}>
                             Evoluton of Cryptocurrency
                         </Typography>
 
-                        <Timelinecomponent/>
-    
+                        <Timelinecomponent />
+
                     </Stack>
                 </Paper>
             </Stack>
