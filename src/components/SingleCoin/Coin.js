@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Container, Stack, Typography, Paper, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import parse from 'html-react-parser';
+import parse from 'html-react-parser'; // parsing the html from text and adding it as DOM component
 import Graph from './Graph/Graph';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -98,6 +98,9 @@ const Coin = () => {
                                 fontWeight: "bold",
                                 color: "#566573",
                             }}>
+
+                                {/* Parsing the html from the text and adding it as normal DOM component */}
+
                                 {parse("" + coinData?.description?.en?.split('. ')[0] + '. ' + coinData?.description?.en?.split('. ')[1])}.
                             </Typography>
                             <Box textAlign="left">

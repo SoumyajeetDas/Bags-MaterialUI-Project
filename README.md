@@ -69,6 +69,7 @@ The Web App is deployed in Netifly
 - React JS
 - Material UI 5
 - Fetch API
+- Parsing the html from text by html-react-parser npm package
 
 
 
