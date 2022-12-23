@@ -128,34 +128,38 @@ const TableData = () => {
                         {/* Table with stck Header */}
                         {!loading && <Table stickyHeader>
                             <TableHead >
-                                <TableCell align='center' sx={{
-                                    backgroundColor: "warning.main",
-                                    color: "white",
-                                    fontFamily: "'Unbounded', cursive"
-                                }}>
-                                    Coin
-                                </TableCell>
-                                <TableCell align='center' sx={{
-                                    backgroundColor: "warning.main",
-                                    color: "white",
-                                    fontFamily: "'Unbounded', cursive"
-                                }}>
-                                    Price
-                                </TableCell>
-                                <TableCell align='center' sx={{
-                                    backgroundColor: "warning.main",
-                                    color: "white",
-                                    fontFamily: "'Unbounded', cursive"
-                                }}>
-                                    24h Change
-                                </TableCell>
-                                <TableCell align='center' sx={{
-                                    backgroundColor: "warning.main",
-                                    color: "white",
-                                    fontFamily: "'Unbounded', cursive"
-                                }}>
-                                    Market Cap
-                                </TableCell>
+
+                                <TableRow>
+                                    <TableCell align='center' sx={{
+                                        backgroundColor: "warning.main",
+                                        color: "white",
+                                        fontFamily: "'Unbounded', cursive"
+                                    }}>
+                                        Coin
+                                    </TableCell>
+                                    <TableCell align='center' sx={{
+                                        backgroundColor: "warning.main",
+                                        color: "white",
+                                        fontFamily: "'Unbounded', cursive"
+                                    }}>
+                                        Price
+                                    </TableCell>
+                                    <TableCell align='center' sx={{
+                                        backgroundColor: "warning.main",
+                                        color: "white",
+                                        fontFamily: "'Unbounded', cursive"
+                                    }}>
+                                        24h Change
+                                    </TableCell>
+                                    <TableCell align='center' sx={{
+                                        backgroundColor: "warning.main",
+                                        color: "white",
+                                        fontFamily: "'Unbounded', cursive"
+                                    }}>
+                                        Market Cap
+                                    </TableCell>
+                                </TableRow>
+
                             </TableHead>
 
 
@@ -168,20 +172,18 @@ const TableData = () => {
                                     <TableRow
                                         key={row.id}
                                     >
-                                        <Link to={`/singleCoin/${row.id}`} style={{ textDecoration: "none", color: "black" }}>
-                                            <TableCell align='center' sx={{
-                                                fontFamily: "'Poppins', sans-serif",
-                                                fontWeight: 'bold',
-                                            }}>
+
+                                        <TableCell align='center' sx={{
+                                            fontFamily: "'Poppins', sans-serif",
+                                            fontWeight: 'bold',
+                                        }}>
+                                            <Link to={`/singleCoin/${row.id}`} style={{ textDecoration: "none", color: "black" }}>
                                                 <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                                                     <img src={row.image} alt={row.name} height="50" />
                                                     {row.name}
                                                 </Box>
-
-                                            </TableCell>
-
-                                        </Link>
-
+                                            </Link>
+                                        </TableCell>
 
                                         <TableCell sx={{
                                             fontFamily: "'Poppins', sans-serif",
@@ -221,9 +223,9 @@ const TableData = () => {
                 }
 
 
-                <Stack sx={{ justifyContent: "center", alignItems: 'center', padding: "10px" }}>
+                { !loading && <Stack sx={{ justifyContent: "center", alignItems: 'center', padding: "10px" }}>
 
-                    <Pagination color="warning" count={(coinTableData.length / 10).toFixed(0)}
+                    <Pagination color="warning" count={(coinTableData.length / 10).toFixed(0)*1}
                         onChange={(a, value) => {
 
                             // Scroll up on clicking on any page in the pagination
@@ -231,7 +233,7 @@ const TableData = () => {
                             setPage(value);
                         }}
                     />
-                </Stack>
+                </Stack>}
             </Paper>
 
         </Container>
