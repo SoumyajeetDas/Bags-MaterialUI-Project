@@ -1,6 +1,6 @@
-# Food Ordering System with MERN
+# Cryptos
 
-A Web App named as Crypto created with React and Material UI
+A Web App named as Cryptos created with React and Material UI
 
 
 
