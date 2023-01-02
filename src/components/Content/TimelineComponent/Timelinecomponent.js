@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@mui/material'
+import { Typography, useTheme, useMediaQuery } from '@mui/material'
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -10,9 +10,17 @@ import TimelineDot from '@mui/lab/TimelineDot';
 
 
 const Timelinecomponent = () => {
+
+    // This will take out the current theme that is been used in the project.
+    const theme = useTheme();
+
+    // useMediaWuery will basically check for the breakponts or wwe can seay if it is lower than md
+    const isMatch = useMediaQuery(theme.breakpoints.down("md"))
+
+
     return (
 
-        <Timeline position="alternate">
+        <Timeline position={isMatch?'right':'alternate'}>
 
             <TimelineItem>
                 <TimelineOppositeContent
