@@ -177,7 +177,7 @@ const TableData = () => {
                                             fontFamily: "'Poppins', sans-serif",
                                             fontWeight: 'bold',
                                         }}>
-                                            <Link to={`/singleCoin/${row.id}`} style={{ textDecoration: "none", color: "black" }}>
+                                            <Link to={`/dashboard/singleCoin/${row.id}`} style={{ textDecoration: "none", color: "black" }}>
                                                 <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                                                     <img src={row.image} alt={row.name} height="50" />
                                                     {row.name}

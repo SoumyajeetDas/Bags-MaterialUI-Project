@@ -60,7 +60,7 @@ const Carousel = () => {
     const items = coinCarouselData.map(coin => {
         return (
 
-            <Link key={coin.id} to={`/singleCoin/${coin.id}`} style={{ textDecoration: "none", color: "black" }}>
+            <Link key={coin.id} to={`/dashboard/singleCoin/${coin.id}`} style={{ textDecoration: "none", color: "black" }}>
 
                 <Box>
                     <img src={coin.image} alt={coin.name} height="80" />
