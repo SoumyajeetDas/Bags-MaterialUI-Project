@@ -19,8 +19,6 @@ function App() {
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/dashboard/singleCoin/:id" element={<Coin />} />
           <Route exact path="/*" element={<Page404 />} />
-          <Route exact path="/dashboard/*" element={<Page404 />} />
-          <Route exact path="/dashboard/singleCoin/:id/*" element={<Page404 />} />
         </Routes>
       </BrowserRouter>
       
