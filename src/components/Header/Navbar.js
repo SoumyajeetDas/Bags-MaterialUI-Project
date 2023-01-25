@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { AppBar, Container, IconButton, Toolbar, Typography, Stack, Button, useTheme, useMediaQuery } from '@mui/material';
+import { AppBar, Container, IconButton, Toolbar, Typography, Stack, Button, useTheme, useMediaQuery, Avatar, Tooltip } from '@mui/material';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import { useNavigate, useResolvedPath, useMatch } from 'react-router-dom'
 import './Navbar.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import MobileNavbar from './MobileNavbar';
+import { UserAuth } from '../../context/AuthContext';
+import { useEffect } from 'react';
 
 const Navbar = () => {
 
@@ -12,6 +14,9 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const [open, setOpen] = useState(false);
+
+    // Getting access to the data from the Context API
+    const { googleSignIn, user, logOut } = UserAuth();
 
     // This will take out the current theme that is been used in the project.
     const theme = useTheme();
@@ -51,6 +56,39 @@ const Navbar = () => {
     }
 
 
+    const handleGoogleSignIn = async () => {
+        try {
+            await googleSignIn();
+
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
+    const handlelogOut = async () => {
+        try {
+            await logOut();
+
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
+
+    useEffect(() => {
+        if (user) {
+            navigate("/dashboard")
+        }
+        else {
+            navigate("/")
+        }
+
+        // eslint-disable-next-line
+    }, [user]);
+
+
     return (
         <AppBar position='static' sx={{
             backgroundColor: "warning.light"
@@ -78,13 +116,66 @@ const Navbar = () => {
                                 <CustomLink value="Home" to="/" />
 
                                 <CustomLink value="Dashboard" to="/dashboard" />
+
+                                {user ?
+
+                                    <Stack direction="row" spacing={1}>
+                                        <Tooltip title={user.email}>
+
+                                            {/* If referrerPolicy: "no-referrer" not given it results restricts access to its image */}
+                                            <Avatar imgProps={{ referrerPolicy: "no-referrer" }} alt="Profile" src={`${user.photoURL}`} sx={{
+                                                marginLeft: "100px"
+                                            }} />
+                                        </Tooltip>
+
+                                        <Button id="button-style" color="inherit"
+                                            onClick={() => handlelogOut()}
+                                            sx={{
+                                                fontSize: "15px",
+                                                '&:hover': {
+                                                    backgroundColor: "warning.main"
+                                                }
+                                            }}>
+                                            Logout
+                                        </Button>
+                                    </Stack>
+
+
+                                    :
+
+                                    <Button id="button-style" color="inherit"
+                                        onClick={() => handleGoogleSignIn()}
+                                        sx={{
+                                            fontSize: "15px",
+                                            '&:hover': {
+                                                backgroundColor: "warning.main"
+                                            }
+                                        }}>
+                                        Login
+                                    </Button>
+
+                                }
+
+
                             </>
+
+
 
                             :
 
-                            <IconButton color='inherit' onClick={() => setOpen(true)}>
-                                <MenuIcon />
-                            </IconButton>
+                            <>
+                                {user && <Tooltip title={user.email}>
+                                    <Avatar alt="Profile" src={`${user.photoURL}`} sx={{
+                                        marginLeft: "100px"
+                                    }} />
+                                </Tooltip>}
+
+                                <IconButton color='inherit' onClick={() => setOpen(true)}>
+                                    <MenuIcon />
+                                </IconButton>
+                            </>
+
+
                         }
 
 

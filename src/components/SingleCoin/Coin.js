@@ -4,11 +4,19 @@ import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser'; // parsing the html from text and adding it as DOM component
 import Graph from './Graph/Graph';
 import CircularProgress from '@mui/material/CircularProgress';
+import { UserAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom'
 
 
 const Coin = () => {
 
-    const [coinData, setCoinData] = useState({})
+    const [coinData, setCoinData] = useState({});
+
+    const navigate = useNavigate();
+
+
+    // Getting access to the data from the Context API.
+    const { user, handleOpen } = UserAuth();
 
     const { id } = useParams();
 
@@ -38,7 +46,17 @@ const Coin = () => {
 
 
     useEffect(() => {
-        fetchSingleCoinData();
+        // If the user is null, user is currently signed-out
+        if (user) {
+            fetchSingleCoinData();
+        }
+        else {
+            // Opening the Modal when user is not logged in that means when it is null and prevents to get into Coin page
+            // and redirects to dashboard.
+            handleOpen();
+            navigate("/dashboard")
+        }
+
 
         // eslint-disable-next-line
     }, [])

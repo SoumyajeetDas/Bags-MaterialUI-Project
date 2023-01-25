@@ -3,10 +3,21 @@ import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-import { useResolvedPath, useMatch, Link } from 'react-router-dom'
+import { useResolvedPath, useMatch, Link } from 'react-router-dom';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { UserAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 
 const MobileNavbar = (props) => {
+
+
+    // Getting access to the data from the Context API
+    const { googleSignIn, user, logOut } = UserAuth();
+
+    const navigate = useNavigate();
 
     const CustomLink = (props) => {
         // The resolvedPath resolves a given To value into an actual Path object with an absolute pathname. This is useful whenever 
@@ -20,31 +31,61 @@ const MobileNavbar = (props) => {
         const isActive = useMatch({ path: resolvedPath.pathname, end: true });
 
         return (
-                <Link to={`${props.to}`} style={{
-                    textDecoration:"none"
-                }}>
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon sx={{
+            <Link to={`${props.to}`} style={{
+                textDecoration: "none"
+            }}>
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <ListItemIcon sx={{
+                            color: isActive ? 'warning.dark' : 'white',
+                        }}>
+
+                            {props.component}
+
+                        </ListItemIcon>
+                        <ListItemText>
+                            <Typography variant='h6' sx={{
+                                fontFamily: "'Unbounded', cursive",
                                 color: isActive ? 'warning.dark' : 'white',
                             }}>
-
-                                {props.component}
-                                
-                            </ListItemIcon>
-                            <ListItemText>
-                                <Typography variant='h6' sx={{
-                                    fontFamily: "'Unbounded', cursive",
-                                    color: isActive ? 'warning.dark' : 'white',
-                                }}>
-                                    {props.value}
-                                </Typography>
-                            </ListItemText>
-                        </ListItemButton>
-                    </ListItem>
-                </Link>
+                                {props.value}
+                            </Typography>
+                        </ListItemText>
+                    </ListItemButton>
+                </ListItem>
+            </Link>
         )
     }
+
+    const handleGoogleSignIn = async () => {
+        try {
+            await googleSignIn();
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
+    const handlelogOut = async () => {
+        try {
+            await logOut();
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
+
+    useEffect(() => {
+        if (user) {
+            navigate("/dashboard")
+        }
+        else {
+            navigate("/")
+        }
+
+        // eslint-disable-next-line
+    }, [user])
 
 
     return (
@@ -80,9 +121,67 @@ const MobileNavbar = (props) => {
                 </Stack>
 
                 <List>
-             
-                    <CustomLink value='Home' to='/' component={<HomeIcon/>} />
-                    <CustomLink value='Dashboard' to='/dashboard' component={<DashboardIcon/>}/>
+
+                    <CustomLink value='Home' to='/' component={<HomeIcon />} />
+                    <CustomLink value='Dashboard' to='/dashboard' component={<DashboardIcon />} />
+
+                    {user ? <Link to="#" style={{
+                        textDecoration: "none"
+                    }}
+                        onClick={() => handlelogOut()}
+                    >
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon sx={{
+                                    color: 'white',
+                                }}>
+
+                                    <LogoutIcon />
+
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <Typography variant='h6' sx={{
+                                        fontFamily: "'Unbounded', cursive",
+                                        color: 'white',
+                                    }}>
+                                        Logout
+                                    </Typography>
+                                </ListItemText>
+                            </ListItemButton>
+                        </ListItem>
+                    </Link>
+
+                        :
+
+                        <Link to="#" style={{
+                            textDecoration: "none"
+                        }}
+                            onClick={() => handleGoogleSignIn()}
+                        >
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon sx={{
+                                        color: 'white',
+                                    }}>
+
+                                        <LoginIcon />
+
+                                    </ListItemIcon>
+                                    <ListItemText>
+                                        <Typography variant='h6' sx={{
+                                            fontFamily: "'Unbounded', cursive",
+                                            color: 'white',
+                                        }}>
+                                            Login
+                                        </Typography>
+                                    </ListItemText>
+                                </ListItemButton>
+                            </ListItem>
+                        </Link>
+
+                    }
+
+
                 </List>
             </Box>
         </Drawer>

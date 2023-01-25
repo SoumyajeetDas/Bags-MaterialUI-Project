@@ -102,7 +102,7 @@ const TableData = () => {
 
                     // If there is no data to show
                     <Stack sx={{
-                        marginTop: "70px",
+                        marginTop: "60px",
                         marginBottom: "20px"
                     }}>
                         <Typography variant="h6" sx={{ color: "warning.dark", fontFamily: "'Unbounded', cursive" }}>
