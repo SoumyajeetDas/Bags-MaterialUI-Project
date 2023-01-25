@@ -42,6 +42,7 @@ https://cryptocurrency-webapp.netlify.app/
 ## Features
 
 - React JS Application with Best Practises.
+- Authentication & Authorization with Google Account.
 - Used Coin Gecko API to get data about the Cryptocurrency.
 - Some brief knowledge about cryptocurrency in Home Page.
 - Carousel consisting of top 10 trending coins with their market cap and 24h change in percentage data.
@@ -69,6 +70,7 @@ The Web App is deployed in Netifly
 - React JS
 - Material UI 5
 - Fetch API
+- Authorization using Google Account with Firebase
 - Parsing the html from text by html-react-parser npm package
 
 
