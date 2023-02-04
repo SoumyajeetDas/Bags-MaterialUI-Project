@@ -8,6 +8,8 @@ A Web App named as Cryptos created with React and Material UI
 
 ![](https://img.shields.io/badge/Website%20Up-Yes-brightgreen?style=for-the-badge)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3bae0306-41fa-4794-b4c5-e46a3e69738d/deploy-status)](https://app.netlify.com/sites/cryptocurrency-webapp/deploys)
+
 ![](https://img.shields.io/badge/Made%20with-React-informational?style=for-the-badge)
 
 ![](https://img.shields.io/badge/React-18.2.0-important?style=for-the-badge)
