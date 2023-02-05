@@ -28,7 +28,6 @@ function App() {
         <Footer />
       </AuthContextProvider>
 
-
     </div>
   );
 }

@@ -77,16 +77,13 @@ const MobileNavbar = (props) => {
 
 
     useEffect(() => {
-        if (user) {
-            navigate("/dashboard")
-        }
-        else {
+        if (!user) {
+
             navigate("/")
         }
 
         // eslint-disable-next-line
-    }, [user])
-
+    }, [user]);
 
     return (
 

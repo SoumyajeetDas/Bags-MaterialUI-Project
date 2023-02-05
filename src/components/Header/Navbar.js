@@ -59,7 +59,6 @@ const Navbar = () => {
     const handleGoogleSignIn = async () => {
         try {
             await googleSignIn();
-
         }
         catch (err) {
             console.error(err);
@@ -78,10 +77,8 @@ const Navbar = () => {
 
 
     useEffect(() => {
-        if (user) {
-            navigate("/dashboard")
-        }
-        else {
+        if (!user) {
+
             navigate("/")
         }
 
@@ -105,7 +102,8 @@ const Navbar = () => {
                         Cryptos
                     </Typography>
                     <Stack direction="row" spacing={2} sx={{
-                        ml: "auto"
+                        ml: "auto",
+                        // width:"50px"
                     }}>
 
                         {/* With useMediqQuery isMatch checks whether or not it below md or above md */}
@@ -119,7 +117,7 @@ const Navbar = () => {
 
                                 {user ?
 
-                                    <Stack direction="row" spacing={1}>
+                                    <Stack direction="row" spacing={2}>
                                         <Tooltip title={user.email}>
 
                                             {/* If referrerPolicy: "no-referrer" not given it results restricts access to its image */}
@@ -165,9 +163,7 @@ const Navbar = () => {
 
                             <>
                                 {user && <Tooltip title={user.email}>
-                                    <Avatar alt="Profile" src={`${user.photoURL}`} sx={{
-                                        marginLeft: "100px"
-                                    }} />
+                                    <Avatar alt="Profile" src={`${user.photoURL}`} />
                                 </Tooltip>}
 
                                 <IconButton color='inherit' onClick={() => setOpen(true)}>
